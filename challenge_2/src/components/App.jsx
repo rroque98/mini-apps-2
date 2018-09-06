@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 
@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: {},
-    }
+    };
     this.handleDataLineGraph = this.handleDataLineGraph.bind(this);
   }
 
@@ -51,20 +51,25 @@ class App extends React.Component {
           pointRadius: 1,
           pointHitRadius: 10,
           data: yValues,
-        }
-      ]
+        },
+      ],
     };
     return data;
   }
 
   render() {
+    const { data } = this.state;
     return (
       <div>
-        <h1>Bitcoin Price Line Graph</h1>
-        <Line data={this.state.data}/>
-        <a href="https://www.coindesk.com/price/">Powered by CoinDesk</a>
+        <h1>
+          Bitcoin Price Line Graph
+        </h1>
+        <Line data={data} />
+        <a href="https://www.coindesk.com/price/">
+          Powered by CoinDesk
+        </a>
       </div>
-    )
+    );
   }
 }
 
