@@ -43,6 +43,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1>Historical Events Finder </h1>
         <Search handleClick={this.handleClick} handleChange={this.handleChange} />
         <EventList data={this.state.data} />
         <ReactPaginate previousLabel={"previous"}

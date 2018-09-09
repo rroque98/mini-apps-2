@@ -5,8 +5,8 @@ import EventListEntry from './EventListEntry';
 const EventList = ({ data }) => {
   return (
     <div>
-    {data.map((event) =>
-      <EventListEntry description={event.description} />)}
+    {data.map((event, i) =>
+      <EventListEntry key={i} event={event} />)}
     </div>
   );
 };

@@ -1,0 +1,8 @@
+.event-container {
+  border-bottom: 1px solid #d0d4db;
+  padding: 2rem;
+}
+
+.bold-text {
+  font-weight: bolder;
+}
