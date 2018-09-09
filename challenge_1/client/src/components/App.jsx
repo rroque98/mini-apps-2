@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-import Search from './Search.jsx';
-import EventList from './EventList.jsx';
+import Search from './Search';
+import EventList from './EventList';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class App extends React.Component {
       searchValue: '',
       data: [],
       numOfPages: 0,
-    }
+    };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
@@ -30,7 +30,7 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log(error);
-    })
+      });
   }
 
   handleChange(e) {
@@ -45,31 +45,36 @@ class App extends React.Component {
     axios.get(`/events?q=${searchValue}&_page=${selectedPage}&_limit=10`)
       .then(response => this.setState({
         data: response.data
-      }))
+      }));
   }
 
   render() {
+    const { data, numOfPages, } = this.state;
     return (
       <div>
-        <h1>Historical Events Finder </h1>
+        <h1>
+          Historical Events Finder
+        </h1>
         <Search handleClick={this.handleClick} handleChange={this.handleChange} />
-        <EventList data={this.state.data} />
-        <ReactPaginate previousLabel={"previous"}
-          nextLabel={"next"}
+        <EventList data={data} />
+        <ReactPaginate
+          previousLabel="previous"
+          nextLabel="next"
           breakLabel={<a href="">...</a>}
-          breakClassName={"spacing"}
-          pageCount={this.state.numOfPages}
+          breakClassName="spacing"
+          pageCount={numOfPages}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={this.handlePageClick}
-          containerClassName={"pagination spacing"}
-          pageClassName={"pagination spacing"}
-          subContainerClassName={"pagination spacing"}
+          containerClassName="pagination spacing"
+          pageClassName="pagination spacing"
+          subContainerClassName="pagination spacing"
           previousClassName="spacing"
           nextClassName="spacing"
-          activeClassName={"active"} />
+          activeClassName="active"
+        />
       </div>
-    )
+    );
   }
 }
 
