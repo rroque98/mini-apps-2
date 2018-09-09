@@ -6,3 +6,9 @@
 .bold-text {
   font-weight: bolder;
 }
+
+.spacing {
+  padding: 4px;
+  text-align: center;
+  border: 1px solid #d0d4db;
+}
