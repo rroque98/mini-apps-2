@@ -1,7 +1,6 @@
 import React from 'react';
 import EventListEntry from './EventListEntry';
 
-
 const EventList = ({ data }) => {
   return (
     <div>

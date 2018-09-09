@@ -9,35 +9,43 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchValue: '',
-      page: 1,
       data: [],
+      numOfPages: 0,
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
 
   handleClick(e) {
     e.preventDefault();
-    console.log('clicked!')
-    axios.get(`/events?q=${this.state.searchValue}&_page=${this.state.page}&_limit=10`)
+    const { searchValue } = this.state;
+    axios.get(`/events?q=${searchValue}&_page=${1}&_limit=10`)
       .then((response) => {
-        // handle success
-        console.log(response);
+        const numOfPages = Math.ceil(response.headers['x-total-count'] / 10)
         this.setState({
           data: response.data,
+          numOfPages,
         });
       })
       .catch((error) => {
-        // handle error
         console.log(error);
     })
   }
 
   handleChange(e) {
-    console.log(e.target.value)
     this.setState({
       searchValue: e.target.value,
     });
+  }
+
+  handlePageClick(e) {
+    const { searchValue } = this.state;
+    const selectedPage = e.selected + 1;
+    axios.get(`/events?q=${searchValue}&_page=${selectedPage}&_limit=10`)
+      .then(response => this.setState({
+        data: response.data
+      }))
   }
 
   render() {
@@ -50,7 +58,7 @@ class App extends React.Component {
           nextLabel={"next"}
           breakLabel={<a href="">...</a>}
           breakClassName={"break-me"}
-          pageCount={this.state.page}
+          pageCount={this.state.numOfPages}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={this.handlePageClick}
