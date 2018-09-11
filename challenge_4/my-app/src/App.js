@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 import './App.css';
 import store from './store';
+import Board from './Board';
 
 // const store = createStore(() => [], {}, applyMiddleware());
 
@@ -37,6 +38,9 @@ class App extends Component {
       }
     }
     console.log(board)
+    this.setState({
+      board,
+    });
   }
 
   insertBombs() {
@@ -90,10 +94,12 @@ class App extends Component {
   }
 
   render() {
+    const { board } = this.state;
     return (
       <Provider store={store}>
         <div className="App">
           <h1>Minesweeper</h1>
+          <Board board={board} />
         </div>
       </Provider>
     );
