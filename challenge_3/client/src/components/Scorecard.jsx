@@ -1,19 +1,8 @@
 import React from 'react';
 
-const Scorecard = () => (
+const Scorecard = ({ scorecard }) => (
   <div>
-    <div>
-      <span>1</span>
-      <span>2</span>
-      <span>3</span>
-      <span>4</span>
-      <span>5</span>
-      <span>6</span>
-      <span>7</span>
-      <span>8</span>
-      <span>9</span>
-      <span>10</span>
-    </div>
+    {scorecard.map((round, i) => <div key={i}>Round{i + 1}: {round[0]} / {round[1]}</div>)}
   </div>
 )
 
