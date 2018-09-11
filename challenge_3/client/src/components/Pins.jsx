@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Pins = ({ handleClick, }) => (
   <div>
@@ -18,6 +19,10 @@ const Pins = ({ handleClick, }) => (
       <button type="button" value={10} onClick={handleClick}>10</button>
     </div>
   </div>
-)
+);
+
+Pins.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default Pins;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Pins from './Pins.jsx';
-import Scorecard from './Scorecard.jsx';
+import Pins from './Pins';
+import Scorecard from './Scorecard';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,8 +19,9 @@ class App extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    
-    const { frameScore, rollNum, scorecard, bonusPoints, spare, strike } = this.state;
+    const {
+      frameScore, rollNum, scorecard, bonusPoints, spare, strike
+    } = this.state;
     const pinHits = Number(e.target.value);
     if (rollNum === 1) {
       frameScore.push(pinHits);
@@ -71,11 +72,7 @@ class App extends React.Component {
         });
       }
     }
-
-    const total = scorecard.reduce((acc, rolls) => {
-      return acc + rolls[0] + rolls[1];
-    }, 0);
-
+    const total = scorecard.reduce((acc, rolls) => (acc + rolls[0] + rolls[1]), 0);
     this.setState({
       totalScore: total + bonusPoints,
     });
@@ -87,7 +84,11 @@ class App extends React.Component {
       <div>
         <Pins handleClick={this.handleClick} />
         <Scorecard scorecard={scorecard} />
-        <h3>Total Score: {totalScore}</h3>
+        <h3>
+          Total Score:
+          {' '}
+          {totalScore}
+        </h3>
       </div>
     );
   }
