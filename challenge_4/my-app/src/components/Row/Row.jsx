@@ -4,7 +4,7 @@ import './Row.css';
 import Block from '../Block/Block.jsx';
 
 const Row = ({ row }) => (
-  <div>
+  <div className="row-container">
     {row.map((block, i) => <Block key={i} block={block} />)}
   </div>
 );

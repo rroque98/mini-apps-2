@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Row from '../Row/Row.jsx';
-import './Board.css';
 
 const Board = ({ board }) => (
   <div>

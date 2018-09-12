@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Block.css';
 
 class Block extends React.Component {
   constructor(props) {
@@ -25,14 +26,14 @@ class Block extends React.Component {
     const { active } = this.state;
     if (active) {
       return (
-        <button type="button" value={block} onClick={this.handleClick}>
+        <button type="button" className="block-container color" value={block} onClick={this.handleClick}>
           {block}
         </button>
       );
     }
     return (
-      <button type="button" value={block} onClick={this.handleClick}>
-        {' '}
+      <button type="button" className="block-container" value={block} onClick={this.handleClick}>
+        {'*'}
       </button>
     );
   }
