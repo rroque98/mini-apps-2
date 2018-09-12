@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 import './App.css';
-import store from './store';
-import Board from './Board';
+import store from '../../store';
+import Board from '../Board/Board';
+
+// const store = createStore(() => [], {}, applyMiddleware());
 
 class App extends Component {
   constructor(props) {

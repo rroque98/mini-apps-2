@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import './Row.css';
 
-// const Row = ({ row }) => (
 class Block extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +16,10 @@ class Block extends React.Component {
     this.setState({
       active: true,
     });
+    console.log(e.target.value, typeof e.target.value)
+    if (e.target.value === '-1') {
+      alert('Game over!')
+    }
   }
 
   render() {
@@ -32,7 +34,7 @@ class Block extends React.Component {
     } else {
       return (
         <button value={block} onClick={this.handleClick}>
-          {}
+          {' '}
         </button>
       )
     }
@@ -41,7 +43,6 @@ class Block extends React.Component {
 
 Block.propTypes = {
   block: PropTypes.number,
-  // handleClick: PropTypes.func,
 };
 
 export default Block;

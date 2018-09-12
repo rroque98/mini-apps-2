@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Row.css';
-import Block from './Block';
+import Block from '../Block/Block';
 
 const Row = ({ row, block, }) => (
   <div>
