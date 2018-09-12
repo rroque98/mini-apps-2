@@ -10,16 +10,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      board: [[0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],],
+      board: [
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0]],
       numOfBombs: 0,
     };
     this.createBoard = this.createBoard.bind(this);
     this.insertBombs = this.insertBombs.bind(this);
     this.calculateNumOfSurrBombs = this.calculateNumOfSurrBombs.bind(this);
     this.isMine = this.isMine.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -92,6 +96,12 @@ class App extends Component {
     }
     return false;
   }
+
+  // handleClick(e) {
+  //   e.preventDefault();
+  //   console.log('clicked')
+  //   console.log(e.target.value)
+  // }
 
   render() {
     const { board } = this.state;

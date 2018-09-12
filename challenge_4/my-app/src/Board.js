@@ -11,7 +11,8 @@ const Board = ({ board }) => (
 );
 
 Board.propTypes = {
-  board: PropTypes.array
+  board: PropTypes.array,
+  // handleClick: PropTypes.func,
 };
 
 export default Board;
