@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Row.css';
-import Block from '../Block/Block';
+import Block from '../Block/Block.jsx';
 
-const Row = ({ row, block, }) => (
+const Row = ({ row }) => (
   <div>
-    {row.map((block, i) =>
-      <Block key={i} block={block} />)}
+    {row.map((block, i) => <Block key={i} block={block} />)}
   </div>
 );
 

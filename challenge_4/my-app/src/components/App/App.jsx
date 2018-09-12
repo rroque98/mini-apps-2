@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import './App.css';
 import store from '../../store';
-import Board from '../Board/Board';
-
-// const store = createStore(() => [], {}, applyMiddleware());
+import Board from '../Board/Board.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -17,13 +15,10 @@ class App extends Component {
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0]],
-      numOfBombs: 0,
     };
     this.createBoard = this.createBoard.bind(this);
     this.insertBombs = this.insertBombs.bind(this);
     this.calculateNumOfSurrBombs = this.calculateNumOfSurrBombs.bind(this);
-    this.isMine = this.isMine.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -33,27 +28,25 @@ class App extends Component {
   createBoard() {
     this.insertBombs();
     const { board } = this.state;
-    for (let i = 0; i < board.length; i++) {
-      for (let x = 0; x < board[i].length; x++) {
+    for (let i = 0; i < board.length; i += 1) {
+      for (let x = 0; x < board[i].length; x += 1) {
         if (board[i][x] === 0) {
           const squareValue = this.calculateNumOfSurrBombs(i, x);
           board[i][x] = squareValue;
         }
       }
     }
-    console.log(board)
     this.setState({
       board,
     });
   }
 
   insertBombs() {
-    const { board, numOfBombs } = this.state;
-    for (let i = 0; i < board.length; i++) {
-      let rowContent = board[i];
-      for (let x = 0; x < rowContent.length; x++) {
-        let square = rowContent[x];
-        if(Math.random() > 0.7) {
+    const { board } = this.state;
+    for (let i = 0; i < board.length; i += 1) {
+      const rowContent = board[i];
+      for (let x = 0; x < rowContent.length; x += 1) {
+        if (Math.random() > 0.7) {
           board[i][x] = -1;
         }
       }
@@ -64,44 +57,31 @@ class App extends Component {
     let numOfSurrMines = 0;
     const { board } = this.state;
     if (board[i - 1] && board[x - 1] && board[i - 1][x - 1] < 0) {
-      numOfSurrMines++;
+      numOfSurrMines += 1;
     }
     if (board[i - 1] && board[i - 1][x] < 0) {
-      numOfSurrMines++;
+      numOfSurrMines += 1;
     }
     if (board[i - 1] && board[x + 1] && board[i - 1][x + 1] < 0) {
-      numOfSurrMines++;
+      numOfSurrMines += 1;
     }
     if (board[x - 1] && board[i][x - 1] < 0) {
-      numOfSurrMines++;
+      numOfSurrMines += 1;
     }
     if (board[x + 1] && board[i][x + 1] < 0) {
-      numOfSurrMines++;
+      numOfSurrMines += 1;
     }
     if (board[i + 1] && board[x - 1] && board[i + 1][x - 1] < 0) {
-      numOfSurrMines++;
+      numOfSurrMines += 1;
     }
     if (board[i + 1] && board[i + 1][x] < 0) {
-      numOfSurrMines++;
+      numOfSurrMines += 1;
     }
     if (board[i + 1] && board[x + 1] && board[i + 1][x + 1] < 0) {
-      numOfSurrMines++;
+      numOfSurrMines += 1;
     }
     return numOfSurrMines;
   }
-
-  isMine(boardPosition) {
-    if (boardPosition < 0) {
-      return true;
-    }
-    return false;
-  }
-
-  // handleClick(e) {
-  //   e.preventDefault();
-  //   console.log('clicked')
-  //   console.log(e.target.value)
-  // }
 
   render() {
     const { board } = this.state;
